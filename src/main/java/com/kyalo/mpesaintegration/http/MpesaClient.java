@@ -1,9 +1,6 @@
 package com.kyalo.mpesaintegration.http;
 
-import com.kyalo.mpesaintegration.dto.RegisterUrlRequest;
-import com.kyalo.mpesaintegration.dto.RegisterUrlResponse;
-import com.kyalo.mpesaintegration.dto.StkPushPayload;
-import com.kyalo.mpesaintegration.dto.StkPushResponse;
+import com.kyalo.mpesaintegration.dto.*;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.service.annotation.PostExchange;
 
@@ -13,6 +10,9 @@ public interface MpesaClient {
 
     @PostExchange("/mpesa/c2b/v1/registerurl")
     RegisterUrlResponse registerUrl(@RequestBody RegisterUrlRequest registerUrlRequest);
+
+    @PostExchange("/mpesa/c2b/v1/simulate")
+    C2BResponse initiateC2BPayment(@RequestBody C2BRequest c2BRequest);
 
     // TODO 01: Implement C2B request and response DTOs
     // TODO 02: Implement C2B PostExchange

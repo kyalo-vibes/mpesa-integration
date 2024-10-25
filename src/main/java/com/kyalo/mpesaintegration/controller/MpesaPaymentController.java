@@ -1,9 +1,6 @@
 package com.kyalo.mpesaintegration.controller;
 
-import com.kyalo.mpesaintegration.dto.ConfirmValidationDto;
-import com.kyalo.mpesaintegration.dto.ConfirmValidationResponse;
-import com.kyalo.mpesaintegration.dto.RegisterUrlRequest;
-import com.kyalo.mpesaintegration.dto.RegisterUrlResponse;
+import com.kyalo.mpesaintegration.dto.*;
 import com.kyalo.mpesaintegration.service.MpesaPaymentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -45,5 +42,11 @@ public class MpesaPaymentController {
     @ResponseStatus(HttpStatus.OK)
     RegisterUrlResponse registerUrls(@RequestBody RegisterUrlRequest registerUrlRequest){
         return mpesaPaymentService.registerUrl(registerUrlRequest);
+    }
+
+    @PostMapping("c2bPayment")
+    @ResponseStatus(HttpStatus.OK)
+    C2BResponse initiateC2B(@RequestBody C2BRequest c2BRequest){
+        return mpesaPaymentService.processC2BPayment(c2BRequest);
     }
 }
