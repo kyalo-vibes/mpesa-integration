@@ -26,4 +26,16 @@ public class MpesaPaymentController {
     ConfirmValidationResponse validatePayment(@RequestBody ConfirmValidationDto payment){
         return mpesaPaymentService.validatePayment(payment);
     }
+
+    /**
+     *  This is the URL that receives payment notification once payment has been
+     *  completed successfully on M-PESA.
+     * @param payment
+     * @return
+     */
+    @PostMapping("confirm")
+    @ResponseStatus(HttpStatus.OK)
+    ConfirmValidationResponse confirmPayment(@RequestBody ConfirmValidationDto payment){
+        return mpesaPaymentService.confirmPayment(payment);
+    }
 }
