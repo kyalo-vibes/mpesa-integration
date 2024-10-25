@@ -2,7 +2,10 @@ package com.kyalo.mpesaintegration.service;
 
 import com.kyalo.mpesaintegration.dto.ConfirmValidationDto;
 import com.kyalo.mpesaintegration.dto.ConfirmValidationResponse;
+import com.kyalo.mpesaintegration.dto.RegisterUrlRequest;
+import com.kyalo.mpesaintegration.dto.RegisterUrlResponse;
 import com.kyalo.mpesaintegration.entity.MpesaPayment;
+import com.kyalo.mpesaintegration.http.MpesaClient;
 import com.kyalo.mpesaintegration.repository.MpesaPaymentRepository;
 import com.kyalo.mpesaintegration.utils.MpesaPaymentStatus;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MpesaPaymentService {
     private final MpesaPaymentRepository mpesaPaymentRepository;
+    private final MpesaClient mpesaClient;
     //This is a list of account numbers that we have registered on out application
     private List<String> allowedAccounts = List.of("ACCOUNT_ONE","ACCOUNT_TWO","ACCOUNT_THREE");
     /**
@@ -86,5 +90,10 @@ public class MpesaPaymentService {
                 .ResultCode("0")
                 .ResultDesc("Accepted")
                 .build();
+    }
+
+    public RegisterUrlResponse registerUrl(RegisterUrlRequest registerUrlRequest){
+
+        return mpesaClient.registerUrl(registerUrlRequest);
     }
 }
