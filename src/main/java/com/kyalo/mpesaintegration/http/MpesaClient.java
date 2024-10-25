@@ -13,4 +13,8 @@ public interface MpesaClient {
 
     @PostExchange("/mpesa/c2b/v1/registerurl")
     RegisterUrlResponse registerUrl(@RequestBody RegisterUrlRequest registerUrlRequest);
+
+    // TODO 01: Implement C2B request and response DTOs
+    // TODO 02: Implement C2B PostExchange
+    // TODO 03: Implement C2B
 }
